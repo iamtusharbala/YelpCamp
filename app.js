@@ -103,6 +103,12 @@ app.get("/campgrounds/:id/edit", async (req, res, next) => {
 })
 
 ///Error Handler -- put at last
+
+app.use((err, req, res, next) => {
+    console.log(err.name);
+    next(err);
+})
+
 app.use((err, req, res, next) => {
     const { message = 'Something happened', status = 500 } = err;
     res.status(status).send(message);
